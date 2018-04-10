@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
          Spatie\Permission\PermissionServiceProvider::class,
+         MrEssex\LaravelAuthProfile\AuthProfileServiceProvider::class,
 
         /*
          * Application Service Providers...
