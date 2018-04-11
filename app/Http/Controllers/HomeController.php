@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Annonce;
+use App\Categorie;
+
 class HomeController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('guest');
     }
 
     /**
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $annonces = Annonce::where('status', 'publish')->paginate(10);
+      $categories = Categorie::all();
+
+      return view('home', compact('annonces', 'categories'));
     }
 }

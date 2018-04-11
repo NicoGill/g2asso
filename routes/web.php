@@ -40,18 +40,21 @@ Route::resource('tag', 'TagController');
 
 Route::get('annonce/{slug}', 'AnnonceController@showBySlug');
 
-// TODO: Gestion utilisateur... ACL
-// Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
-//     Route::get('tickets', 'TicketsController@index');
-//     Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
-// });
+Route::get('/profil', 'ProfileController@index')->name('profil');
+// à voir
+Route::post('/profil', 'ProfileController@store')->name('profil');
+
 
 /*
-
-Route::resource('users', 'UserController');
-
-Route::resource('roles', 'RoleController');
-
-Route::resource('permissions', 'PermissionController');
-
+Route::group([
+  'prefix' => 'admin',
+  'middleware' => ['role:administrateur']
+], function() {
+    Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
+});
 */
+Route::resource('users', 'UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
