@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use App\User;
 use Auth;
 
 //Importing laravel-permission models
@@ -26,8 +27,12 @@ class ProfileController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function index() {
-      $user = User::find(Auth::id());
-      return view('auth.profil', compact('user'));
+
+      Log::info('Showing user profile for user: ');
+      Log::info(Auth::id());
+      // better to move the view in user view folder
+      return view('auth.profil', ['user' => User::findOrFail(Auth::id())]);
+
     }
 
     /**
