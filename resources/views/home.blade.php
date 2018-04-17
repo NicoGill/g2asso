@@ -1,17 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <h1>Accueil</h1>
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-        </div>
+
+@if (session('status'))
+  <section>
+    <div class="container">
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
     </div>
+  </section>
+@endif
+
+<section class="jumbotron text-center">
+  <div class="container-fluid">
+    <h1 class="jumbotron-heading">G2asso example</h1>
+    <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elit arcu, aliquam et ex eu, posuere feugiat magna.
+      Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc euismod purus dui, nec tincidunt felis ultrices vitae.</p>
+    <p>
+      <a href="{{ route('annonce.create') }}" class="btn btn-primary my-2">Ajouter une annonce</a>
+      <a href="{{ route('annonce.index') }}" class="btn btn-secondary my-2">Voir mes annonces</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
       @if ($annonces->isEmpty())
           <p>Vous n'avez pas encore d'annonce.</p>
       @else
@@ -52,5 +66,6 @@
 
           {{ $annonces->render() }}
       @endif
-</div>
+    </div>
+  </section>
 @endsection

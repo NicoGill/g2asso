@@ -30,6 +30,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Get all of the owning userable models.
+     */
+    public function userable()
+    {
+        return $this->morphTo();
+    }
+
     public function annonces(){
     	$this->hasMany('Annonce', 'user_id');
     }
